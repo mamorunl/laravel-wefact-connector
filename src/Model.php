@@ -29,7 +29,7 @@ class Model
             return new $called_class($data[strtolower($called_class)]);
         }
 
-        return false;
+        return null;
     }
 
     public static function all()
