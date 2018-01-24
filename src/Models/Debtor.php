@@ -98,7 +98,9 @@ class Debtor extends Model
             return null;
         }
 
-        return new Debtor($response['debtor']);
+        $called_class = get_called_class();
+
+        return new $called_class($response['debtor']);
     }
 
     public function getId()
