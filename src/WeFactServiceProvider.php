@@ -17,8 +17,15 @@ class WeFactServiceProvider extends ServiceProvider
         //
     }
 
+    /**
+     * Perform post-registration booting of services
+     *
+     * @return void
+     */
     public function boot()
     {
-        //
+        $this->publishes([
+            __DIR__ . '/config/wefact.php' => config_path('wefact.php')
+        ]);
     }
 }
