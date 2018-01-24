@@ -1,0 +1,29 @@
+{
+  "name": "mamorunl/laravel-wefact-connector",
+  "description": "A Simple Laravel WeFact Connector",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Bas Hepping",
+      "email": "info@mamoru.nl"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "mamorunl\\WeFact": "src/"
+    }
+  },
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=7.0.0",
+    "laravel/framework": "5.5.*"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "mamorunl\\WeFact\\WeFactServiceProvider"
+      ]
+    }
+  }
+}
