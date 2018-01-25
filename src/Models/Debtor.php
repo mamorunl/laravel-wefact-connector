@@ -68,7 +68,8 @@ class Debtor extends Model implements Authenticatable
         'Created',
         'Modified',
         'Groups',
-        'CustomFields'
+        'CustomFields',
+        'Translations'
     ];
 
     public function __construct(array $params = [])
