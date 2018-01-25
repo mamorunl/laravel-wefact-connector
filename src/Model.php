@@ -22,11 +22,14 @@ class Model
             'Identifier' => $identifier
         ];
 
-        $data = self::sendRequest(strtolower(get_called_class()), 'show', $params);
+        $full_class = get_called_class();
+        $base_class = explode('\\', $full_class);
+        $base_class = end($base_class);
+
+        $data = self::sendRequest(strtolower($base_class), 'show', $params);
 
         if(!strcmp($data['status'], 'success')) {
-            $called_class = get_called_class();
-            return new $called_class($data[strtolower($called_class)]);
+            return new $full_class($data[strtolower($base_class)]);
         }
 
         return null;
@@ -38,15 +41,17 @@ class Model
             'limit' => 99999
         ];
 
-        $called_class = get_called_class();
+        $full_class = get_called_class();
+        $base_class = explode('\\', $full_class);
+        $base_class = end($base_class);
 
-        $data = self::sendRequest(strtolower($called_class), 'list', $params);
+        $data = self::sendRequest(strtolower($base_class), 'list', $params);
 
         if(!strcmp($data['status'], 'success')) {
             $classes = [];
 
-            foreach ($data[strtolower($called_class)] as $object) {
-                $classes[] = new $called_class($object);
+            foreach ($data[strtolower($base_class)] as $object) {
+                $classes[] = new $full_class($object);
             }
 
             return $classes;
