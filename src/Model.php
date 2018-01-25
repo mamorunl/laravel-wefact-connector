@@ -23,8 +23,7 @@ class Model
         ];
 
         $full_class = get_called_class();
-        $base_class = explode('\\', $full_class);
-        $base_class = end($base_class);
+        $base_class = substr(get_called_class(), strrpos(get_called_class(), '\\') + 1);
 
         $data = self::sendRequest(strtolower($base_class), 'show', $params);
 
@@ -42,8 +41,7 @@ class Model
         ];
 
         $full_class = get_called_class();
-        $base_class = explode('\\', $full_class);
-        $base_class = end($base_class);
+        $base_class = substr(get_called_class(), strrpos(get_called_class(), '\\') + 1);
 
         $data = self::sendRequest(strtolower($base_class), 'list', $params);
 
