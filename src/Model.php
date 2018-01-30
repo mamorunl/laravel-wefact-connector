@@ -69,7 +69,7 @@ class Model
         if (!strcmp($data['status'], 'success')) {
             $classes = [];
 
-            foreach ($data[strtolower($base_class)] as $object) {
+            foreach ($data[strtolower($base_class) . 's'] as $object) {
                 $classes[] = new $full_class($object);
             }
 
