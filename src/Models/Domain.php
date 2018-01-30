@@ -15,6 +15,14 @@ class Domain extends Model
     protected $fillable = [
         'Identifier',
         'Domain',
-        'Tld'
+        'Tld',
+        'RegistrationDate',
+        'ExpirationDate',
+        'Status',
+        'Registrar',
+        'RegistrarName',
+        'HostingID',
+        'Subscription',
+        'Modified'
     ];
 }
