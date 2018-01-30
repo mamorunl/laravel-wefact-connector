@@ -18,11 +18,22 @@ class Domain extends Model
         'Tld',
         'RegistrationDate',
         'ExpirationDate',
+        'DNS1',
+        'DNS2',
+        'DNS3',
+        'DNSTemplate',
+        'OwnerHandle',
+        'AdminHandle',
+        'TechHandle',
+        'DomainAutoRenew',
+        'Comment',
         'Status',
         'Registrar',
         'RegistrarName',
+        'RegistrarInfo',
         'HostingID',
         'Subscription',
-        'Modified'
+        'Modified',
+        'Translations'
     ];
 }
