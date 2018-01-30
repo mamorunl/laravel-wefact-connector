@@ -16,6 +16,20 @@ class Model
     use SendRequestTrait,
         HasAttributes;
 
+    public function __construct(array $params = [])
+    {
+        $this->fill($params);
+    }
+
+    /**
+     * Find a specific instance of a given model.
+     * This method calls the show method in
+     * the WeFact Hosting API.
+     *
+     * @param $identifier
+     *
+     * @return null
+     */
     public static function find($identifier)
     {
         $params = [
@@ -27,13 +41,20 @@ class Model
 
         $data = self::sendRequest(strtolower($base_class), 'show', $params);
 
-        if(!strcmp($data['status'], 'success')) {
+        if (!strcmp($data['status'], 'success')) {
             return new $full_class($data[strtolower($base_class)]);
         }
 
         return null;
     }
 
+    /**
+     * Retrieve all instances of a given model.
+     * This method calls the list method in
+     * the WeFact Hosting API.
+     *
+     * @return array|bool
+     */
     public static function all()
     {
         $params = [
@@ -45,7 +66,7 @@ class Model
 
         $data = self::sendRequest(strtolower($base_class), 'list', $params);
 
-        if(!strcmp($data['status'], 'success')) {
+        if (!strcmp($data['status'], 'success')) {
             $classes = [];
 
             foreach ($data[strtolower($base_class)] as $object) {
@@ -66,7 +87,7 @@ class Model
     public function fill(array $attributes)
     {
         foreach ($attributes as $attribute_key => $attribute) {
-            if($this->isFillable($attribute_key)) {
+            if ($this->isFillable($attribute_key)) {
                 $this->$attribute_key = $attribute;
             }
         }

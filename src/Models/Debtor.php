@@ -72,11 +72,6 @@ class Debtor extends Model implements Authenticatable
         'Translations'
     ];
 
-    public function __construct(array $params = [])
-    {
-        $this->fill($params);
-    }
-
     /**
      * @param $username
      * @param $password
