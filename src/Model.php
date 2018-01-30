@@ -8,6 +8,7 @@
 
 namespace mamorunl\WeFact;
 
+use mamorunl\WeFact\Models\Debtor;
 use mamorunl\WeFact\Traits\HasAttributes;
 use mamorunl\WeFact\Traits\SendRequestTrait;
 
@@ -52,13 +53,48 @@ class Model
      * Retrieve all instances of a given model.
      * This method calls the list method in
      * the WeFact Hosting API.
-     *
      * @return array|bool
      */
     public static function all()
     {
         $params = [
             'limit' => 99999
+        ];
+
+        $full_class = get_called_class();
+        $base_class = substr(get_called_class(), strrpos(get_called_class(), '\\') + 1);
+
+        $data = self::sendRequest(strtolower($base_class), 'list', $params);
+
+        if (!strcmp($data['status'], 'success')) {
+            $classes = [];
+
+            foreach ($data[str_plural(strtolower($base_class))] as $object) {
+                $classes[] = new $full_class($object);
+            }
+
+            return $classes;
+        }
+
+        return false;
+    }
+
+    /**
+     * Retrieve all instances of a given model
+     * where the Debtor is the given debtor.
+     * This method calls the list method
+     * in the WeFact Hosting API.
+     *
+     * @param \mamorunl\WeFact\Models\Debtor $debtor
+     *
+     * @return array|bool
+     */
+    public static function allWhereDebtor(Debtor $debtor)
+    {
+        $params = [
+            'limit'     => 99999,
+            'searchat'  => 'DebtorCode',
+            'searchfor' => $debtor->DebtorCode
         ];
 
         $full_class = get_called_class();
