@@ -18,6 +18,7 @@ class Domain extends Model
         'Tld',
         'RegistrationDate',
         'ExpirationDate',
+        'Debtor',
         'DNS1',
         'DNS2',
         'DNS3',
