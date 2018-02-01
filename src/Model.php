@@ -17,6 +17,8 @@ class Model
     use SendRequestTrait,
         HasAttributes;
 
+    protected $_error;
+
     public function __construct(array $params = [])
     {
         $this->fill($params);
@@ -127,5 +129,10 @@ class Model
                 $this->$attribute_key = $attribute;
             }
         }
+    }
+
+    public function getLastError()
+    {
+        return $this->_error;
     }
 }

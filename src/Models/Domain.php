@@ -55,6 +55,8 @@ class Domain extends Model
             return true;
         }
 
+        $this->_error = $data['error'];
+
         return false;
     }
 }
