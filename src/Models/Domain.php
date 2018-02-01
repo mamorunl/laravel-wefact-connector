@@ -37,4 +37,24 @@ class Domain extends Model
         'Modified',
         'Translations'
     ];
+
+    /**
+     * Update WhoIS data on WeFact
+     *
+     * @param $whois_data
+     *
+     * @return bool
+     */
+    public function edit_whois($whois_data)
+    {
+        $base_class = substr(get_called_class(), strrpos(get_called_class(), '\\') + 1);
+
+        $data = self::sendRequest(strtolower($base_class), 'editwhois', $whois_data);
+
+        if (!strcmp($data['status'], 'success')) {
+            return true;
+        }
+
+        return false;
+    }
 }
